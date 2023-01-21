@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfContact xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Contact>
+    <Id>363</Id>
+    <Name>Manish</Name>
+    <Age>26</Age>
+  </Contact>
+  <Contact>
+    <Id>364</Id>
+    <Name>Dheeraj</Name>
+    <Age>24</Age>
+  </Contact>
+  <Contact>
+    <Id>365</Id>
+    <Name>Ramesh</Name>
+    <Age>28</Age>
+  </Contact>
+</ArrayOfContact>

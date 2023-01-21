@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
 
 namespace FileIOOperation
 {
@@ -53,7 +53,7 @@ namespace FileIOOperation
                 }
                 Console.WriteLine("Binary Deserialization Completed Succesfully");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -75,7 +75,7 @@ namespace FileIOOperation
                 File.WriteAllText(path, jsonData);
                 Console.WriteLine("JSON Serialization Completed Succesfully");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -95,7 +95,50 @@ namespace FileIOOperation
                 }
                 Console.WriteLine("JSON Deserialization Completed Succesfully");
             }
-            catch(Exception ex) 
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        //XML Serialization Operation
+        public static void XMLSerializationFn()
+        {
+            string path = @"C:\Users\hksol\source\repos\FileIOOperation\FileIOOperation\Files\XMLData.xml";
+            try
+            {
+                List<Contact> contact = new List<Contact>()
+                {
+                    new Contact() {Id = 363, Name="Manish", Age= 26},
+                    new Contact() {Id = 364, Name="Dheeraj", Age= 24},
+                    new Contact() {Id = 365, Name="Ramesh", Age= 28},
+                };
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Contact>));
+                StreamWriter sw = new StreamWriter(path);
+                xmlSerializer.Serialize(sw, contact);
+                Console.WriteLine("XML Serialization Successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        //XML DeSerialization Operation
+        public static void XMLDeSerializationFn()
+        {
+            try
+            {
+                string path = @"C:\Users\hksol\source\repos\FileIOOperation\FileIOOperation\Files\XMLData.xml";
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Contact>));
+                FileStream stream = new FileStream(path, FileMode.Open);
+                List<Contact> record = (List<Contact>)xmlSerializer.Deserialize(stream);
+                foreach (Contact contact in record)
+                {
+                    Console.WriteLine(contact);
+                }
+                Console.WriteLine("XML Deserialization Successfully");
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
